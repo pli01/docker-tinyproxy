@@ -1,0 +1,9 @@
+tinyproxy:
+  build: .
+  ports:
+    - "18888:8888"
+  container_name: tinyproxy
+  volumes:
+    - "./tinyproxy.conf:/tinyproxy/tinyproxy.conf:ro"
+    - "./tinyproxy-log:/var/log/tinyproxy:rw"
+  entrypoint: /usr/sbin/tinyproxy -d -c /tinyproxy/tinyproxy.conf

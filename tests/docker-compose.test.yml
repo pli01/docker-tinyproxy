@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  http_proxy:
+    image: ci-tool-stack/tinyproxy:${VERSION:-latest}
+#    build:
+#      context: .
+#      args:
+#        - http_proxy=$http_proxy
+#        - https_proxy=$https_proxy
+#        - no_proxy=$no_proxy
+    ports:
+      - "80"
+    environment:
+      - http_proxy=$http_proxy
+      - https_proxy=$https_proxy
+      - no_proxy=$no_proxy,nexus
+    entrypoint: "/bin/bash -c 'sleep infinity'"

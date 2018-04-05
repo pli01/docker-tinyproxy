@@ -12,8 +12,9 @@ RUN dpkg-reconfigure locales && \
     /usr/sbin/update-locale LANG=C.UTF-8
 
 RUN sed -i -e"s/^Allow /#Allow /" /etc/tinyproxy/tinyproxy.conf
-RUN [ -d /var/run/tinyproxy ] || mkdir -p /var/run/tinyproxy ; chown nobody. /var/run/tinyproxy
-USER nobody
+RUN [ -d /var/run/tinyproxy ] || mkdir -p /var/run/tinyproxy ; chown tinyproxy. /var/run/tinyproxy ; \
+    [ -d /var/log/tinyproxy/ ] && chown tinyproxy. /var/run/tinyproxy
+USER tinyproxy
 
 EXPOSE 8888
 ENTRYPOINT ["/usr/sbin/tinyproxy", "-d"]

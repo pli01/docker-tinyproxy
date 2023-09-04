@@ -10,8 +10,8 @@ services:
         - https_proxy=$https_proxy
         - no_proxy=$no_proxy
     ports:
-      - "18888:8888"
-    entrypoint: /usr/sbin/tinyproxy -d -c /tinyproxy/tinyproxy.conf
+      - "8888:8888"
+    entrypoint: /usr/bin/tinyproxy -d -c /tinyproxy/tinyproxy.conf
     volumes:
       - "./tinyproxy.conf:/tinyproxy/tinyproxy.conf:ro"
 #      - "./tinyproxy-log:/var/log/tinyproxy:rw"

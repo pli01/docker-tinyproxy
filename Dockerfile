@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:latest
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get -q update && \
@@ -11,9 +11,9 @@ RUN dpkg-reconfigure locales && \
     locale-gen C.UTF-8 && \
     /usr/sbin/update-locale LANG=C.UTF-8
 
-RUN sed -i -e"s/^Allow /#Allow /" /etc/tinyproxy.conf
+RUN sed -i -e"s/^Allow /#Allow /" /etc/tinyproxy/tinyproxy.conf
 RUN [ -d /var/run/tinyproxy ] || mkdir -p /var/run/tinyproxy ; chown nobody. /var/run/tinyproxy
 USER nobody
 
 EXPOSE 8888
-ENTRYPOINT ["/usr/sbin/tinyproxy", "-d"]
+ENTRYPOINT ["/usr/bin/tinyproxy", "-d"]
